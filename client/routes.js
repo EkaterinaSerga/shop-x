@@ -4,13 +4,15 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
-  Signup,
   UserHome,
   AllProducts,
   SingleProduct,
   Cart,
   AllUsers,
-  CheckoutForm
+  CheckoutForm,
+  SignInSide,
+  SignUp,
+  Home
 } from './components'
 import {me} from './store'
 
@@ -24,26 +26,27 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
+    console.log({routesProps: this.props})
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/products/:productId" component={SingleProduct} />
-        <Route path="/products" component={AllProducts} />
-        <Route exact path="/" component={AllProducts} />
-        <Route exact path="/cart/checkout" component={CheckoutForm} />
-        <Route path="/cart" component={Cart} />
+        <Route path="/login" component={SignInSide} />
+        <Route path="/signup" component={SignUp} />
+        <Route exact path="/" component={SignInSide} />
+        <Route exact path="/home2" component={Home} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/allUsers" component={AllUsers} />
+            <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/products" component={AllProducts} />
+            <Route exact path="/cart/checkout" component={CheckoutForm} />
+            <Route path="/cart" component={Cart} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={SignInSide} />
       </Switch>
     )
   }
