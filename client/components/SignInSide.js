@@ -31,14 +31,17 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     backgroundImage:
-      'url(https://i1.pickpik.com/photos/977/476/923/596878fc2d723-preview.jpg)',
+      'url(https://wallpaper.wiki/wp-content/uploads/2019/02/1msflight_rv6_kahoolawe.jpg)',
     backgroundRepeat: 'no-repeat',
+    width: '40%',
     backgroundColor:
       theme.palette.type === 'light'
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
+    color: 'white',
+    alignItems: 'center'
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -81,7 +84,7 @@ const SignIn = props => {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={false} sm={4} md={7} className={classes.image}></Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>

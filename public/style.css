@@ -95,7 +95,7 @@ div#companyName h1 {
   font-weight: lighter;
   display: inline-block;
   margin: 3em;
-  font-size: larger;
+  font-size: 3em;
 }
 
 nav.navigation {
@@ -114,7 +114,7 @@ nav.navigation {
 
 .list-ctn {
   width: 20vw;
-  height: 50vh;
+  height: 41vh;
   border-style: double;
   border-color: white;
   margin: 35px;
@@ -133,4 +133,10 @@ div .list-ctn h1 {
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0;
   padding: 10px;
+}
+
+div#priceCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
