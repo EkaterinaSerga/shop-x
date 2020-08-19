@@ -1,5 +1,21 @@
-body {
+/* body {
   font-family: sans-serif;
+} */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: white;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  background-image: url('https://wallpaper.wiki/wp-content/uploads/2019/02/1msflight_rv6_kahoolawe.jpg');
+  background-repeat: no-repeat;
 }
 
 a {
@@ -8,11 +24,14 @@ a {
 
 label {
   display: block;
+  color: white;
 }
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 3em;
+  color: white;
+  font-size: larger;
 }
 
 form div {
@@ -59,4 +78,59 @@ div .cartImage img {
   font-size: 12px;
   flex-direction: column;
   justify-content: left;
+}
+
+/* NAVIGATION */
+
+div#companyName {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px;
+  color: white;
+}
+
+div#companyName h1 {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: white;
+  font-weight: lighter;
+  display: inline-block;
+  margin: 3em;
+  font-size: larger;
+}
+
+nav.navigation {
+  display: flex;
+  height: 18vh;
+}
+
+/* ALL PRODUCTS */
+.allProducts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.list-ctn {
+  width: 20vw;
+  height: 50vh;
+  border-style: double;
+  border-color: white;
+  margin: 35px;
+}
+
+div .list-ctn img {
+  width: 100%;
+}
+
+div .list-ctn h1 {
+  color: white;
+  min-height: 8vh;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 10px;
 }
