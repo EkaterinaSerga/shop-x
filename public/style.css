@@ -16,6 +16,7 @@ body {
   font-weight: lighter;
   background-image: url('https://wallpaper.wiki/wp-content/uploads/2019/02/1msflight_rv6_kahoolawe.jpg');
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 a {
@@ -26,6 +27,16 @@ label {
   display: block;
   color: white;
 }
+
+/* TO MAKE NAV BAR STICKY */
+/* .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  align-items: right;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+} */
 
 nav a {
   display: inline-block;
