@@ -1,13 +1,17 @@
 import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import {Link} from 'react-router-dom'
 
 class ProductList extends React.Component {
   render() {
+    const {product} = this.props
     return (
       <div className="list-ctn">
-        <img src={this.props.product.imageUrl} />
-        <h1>{this.props.product.name}</h1>
-        {/* <p>{this.props.products.description}</p> */}
+        <Link to={`/products/${product.id}`}>
+          <img src={product.imageUrl} className="list-item-image" />
+          <h1>{product.name}</h1>
+        </Link>
+        {/* <p>{product.description}</p> */}
         <div id="priceCart">
           <p
             style={{
@@ -17,7 +21,7 @@ class ProductList extends React.Component {
               textAlign: 'center'
             }}
           >
-            ${this.props.product.price}
+            ${product.price}
           </p>
           {/* <input
             type="number"
@@ -55,7 +59,7 @@ class ProductList extends React.Component {
         </div>
         <button
           onClick={this.props.addToCart}
-          id={this.props.product.id}
+          id={product.id}
           type="button"
           className="addToCart"
         >
