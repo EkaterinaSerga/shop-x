@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, deleteProduct} from '../store/allProducts'
-import {postSingleOrderThunk} from '../store/order'
 import ProductList from './productList'
 import {Link} from 'react-router-dom'
 

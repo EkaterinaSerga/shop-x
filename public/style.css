@@ -229,3 +229,21 @@ div.quantity-control {
   /* font-weight: lighter; */
   height: 15%;
 }
+
+/* SINGLE PRODUCT PAGE */
+.singleProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* width: 700px; */
+}
+
+.singlePE {
+  align-self: center;
+  width: 700px;
+}
+
+.productInfoBlock {
+  width: 700px;
+}

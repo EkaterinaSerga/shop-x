@@ -29,9 +29,9 @@ class SingleProduct extends React.Component {
       name: this.props.singleProduct.name,
       price: this.props.singleProduct.price,
       imageUrl: this.props.singleProduct.imageUrl,
-      quantity: this.state.quantity,
-//       product: this.props.singleProduct,
-//       quantity: this.state.quantity
+      quantity: this.state.quantity
+      //       product: this.props.singleProduct,
+      //       quantity: this.state.quantity
     }
 
     if (!localStorage.getItem('cart')) {
@@ -60,21 +60,21 @@ class SingleProduct extends React.Component {
 
     return (
       <div className="singleProduct">
-        <div className="productImage">
+        <div className="productImage singlePE">
           <img src={this.props.singleProduct.imageUrl} />
         </div>
-        <div className="productInfo">
+        <div className="productInfo singlePE">
           <div className="productInfoBlock">
             <h2>{this.props.singleProduct.name}</h2>
           </div>
           <div className="productInfoBlock">
             <p>{this.props.singleProduct.description}</p>
           </div>
-          <div>
+          <div className="singlePE">
             <h2>Price per item: {this.props.singleProduct.price}$</h2>
           </div>
         </div>
-        <div>
+        <div className="singlePE">
           <input
             type="number"
             defaultValue="1"
