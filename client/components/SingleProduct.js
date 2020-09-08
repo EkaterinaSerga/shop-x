@@ -8,10 +8,12 @@ class SingleProduct extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: 1
+      quantity: 1,
+      buttonClass: 'checkOut'
     }
     this.addToCart = this.addToCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -22,6 +24,14 @@ class SingleProduct extends React.Component {
     this.setState({
       quantity: event.target.value
     })
+  }
+
+  handleClick() {
+    this.setState({
+      buttonClass:
+        this.state.buttonClass === 'checked-out' ? 'checkOut' : 'checked-out'
+    })
+    this.props.postOrder()
   }
 
   addToCart() {
@@ -41,7 +51,8 @@ class SingleProduct extends React.Component {
       const newCart = JSON.parse(localStorage.getItem('cart'))
       const product = newCart.find(item => item.id === Number(this.props.id))
       if (product) {
-        product.quantity = Number(product.quantity) + Number(this.state.qty)
+        product.quantity =
+          Number(product.quantity) + Number(this.state.quantity)
       } else {
         newCart.push(productToAdd)
       }
@@ -76,32 +87,41 @@ class SingleProduct extends React.Component {
           </div>
         </div>
         <div className="singlePE">
-          <input
-            type="number"
-            defaultValue="1"
-            onChange={this.handleChange}
-            min="1"
-            max="20"
-          />
-          <button
-            type="button"
-            className="addToCartButton"
-            onClick={() => {
-              this.addToCart()
-            }}
-          >
-            ADD TO CART
-          </button>
-          <Link to="/cart">
+          <div className="addCheckout">
+            <input
+              type="number"
+              defaultValue="1"
+              onChange={this.handleChange}
+              min="1"
+              max="20"
+            />
             <button
               type="button"
-              // onClick={() => {
-              //   this.props.postOrder()
-              // }}
+              className={this.state.buttonClass}
+              onClick={() => {
+                this.addToCart()
+              }}
+              style={{
+                width: '225px',
+                margin: '20px'
+              }}
             >
-              CHECKOUT
+              ADD TO CART
             </button>
-          </Link>
+            <Link to="/cart">
+              <button
+                className={this.state.buttonClass}
+                onClick={this.handleClick}
+                style={{
+                  width: '225px',
+                  margin: '20px',
+                  textAlign: 'center'
+                }}
+              >
+                CHECKOUT
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     )
