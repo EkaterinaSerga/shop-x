@@ -15,88 +15,104 @@ class AddressForm extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: this.props.email,
+      // email: this.props.email,
       address: '',
       city: '',
       state: '',
       zipCode: '',
-      step: 1,
+      // step: 1,
       country: ''
     }
+
     this.getItemsFromCart = this.getItemsFromCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handlePreview = this.handlePreview.bind(this)
-    this.handleConfirm = this.handleConfirm.bind(this)
-    this.handleSelectionChange = this.handleSelectionChange.bind(this)
+    //   this.handlePreview = this.handlePreview.bind(this)
+    //   this.handleConfirm = this.handleConfirm.bind(this)
+    //   this.handleSelectionChange = this.handleSelectionChange.bind(this)
     this.setUser = this.setUser.bind(this)
   }
 
-  states = [
-    'Alabama',
-    'Alaska',
-    'American Samoa',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'District of Columbia',
-    'Federated States of Micronesia',
-    'Florida',
-    'Georgia',
-    'Guam',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Marshall Islands',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Northern Mariana Islands',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Palau',
-    'Pennsylvania',
-    'Puerto Rico',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virgin Island',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming'
-  ]
+  // states = [
+  //   'Alabama',
+  //   'Alaska',
+  //   'American Samoa',
+  //   'Arizona',
+  //   'Arkansas',
+  //   'California',
+  //   'Colorado',
+  //   'Connecticut',
+  //   'Delaware',
+  //   'District of Columbia',
+  //   'Federated States of Micronesia',
+  //   'Florida',
+  //   'Georgia',
+  //   'Guam',
+  //   'Hawaii',
+  //   'Idaho',
+  //   'Illinois',
+  //   'Indiana',
+  //   'Iowa',
+  //   'Kansas',
+  //   'Kentucky',
+  //   'Louisiana',
+  //   'Maine',
+  //   'Marshall Islands',
+  //   'Maryland',
+  //   'Massachusetts',
+  //   'Michigan',
+  //   'Minnesota',
+  //   'Mississippi',
+  //   'Missouri',
+  //   'Montana',
+  //   'Nebraska',
+  //   'Nevada',
+  //   'New Hampshire',
+  //   'New Jersey',
+  //   'New Mexico',
+  //   'New York',
+  //   'North Carolina',
+  //   'North Dakota',
+  //   'Northern Mariana Islands',
+  //   'Ohio',
+  //   'Oklahoma',
+  //   'Oregon',
+  //   'Palau',
+  //   'Pennsylvania',
+  //   'Puerto Rico',
+  //   'Rhode Island',
+  //   'South Carolina',
+  //   'South Dakota',
+  //   'Tennessee',
+  //   'Texas',
+  //   'Utah',
+  //   'Vermont',
+  //   'Virgin Island',
+  //   'Virginia',
+  //   'Washington',
+  //   'West Virginia',
+  //   'Wisconsin',
+  //   'Wyoming'
+  // ]
 
   componentDidMount() {
     this.props.getUser().then(this.setUser())
     this.getItemsFromCart()
-    // this.props.getOrder(this.props.id)
+    const cart = JSON.parse(localStorage.getItem('address'))
+    console.log('address 1 -->', cart)
+    if (!cart) {
+      console.log('nothing in the cart')
+      localStorage.setItem('address', JSON.stringify([this.state]))
+    } else {
+      this.setState({
+        firstName: cart.firstName,
+        lastName: cart.lastName,
+        address: cart.address,
+        city: cart.city,
+        state: cart.state,
+        zipCode: cart.zipCode,
+        country: cart.country
+      })
+    }
   }
 
   getItemsFromCart() {
@@ -113,29 +129,32 @@ class AddressForm extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault()
+    console.log({addressEvent: event.target})
     this.setState({
       [event.target.name]: event.target.value
     })
+    this.props.handleChange(event)
   }
 
-  handleSelectionChange(event) {
-    this.setState({
-      state: event.target.value
-    })
-  }
+  // handleSelectionChange(event) {
+  //   this.setState({
+  //     state: event.target.value
+  //   })
+  // }
 
-  handlePreview() {
-    this.setState({
-      step: 2
-    })
-  }
+  // handlePreview() {
+  //   this.setState({
+  //     step: 2
+  //   })
+  // }
 
-  handleConfirm() {
-    this.setState({
-      step: 3
-    })
-    window.localStorage.clear()
-  }
+  // handleConfirm() {
+  //   this.setState({
+  //     step: 3
+  //   })
+  //   window.localStorage.clear()
+  // }
 
   async setUser() {
     await this.setState({
@@ -144,6 +163,7 @@ class AddressForm extends React.Component {
   }
 
   render() {
+    console.log('state from address form', this.state)
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom>

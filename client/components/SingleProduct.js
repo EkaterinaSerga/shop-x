@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProductThunk} from '../store/singleProduct'
 import {postSingleOrderThunk} from '../store/order'
+import {Link} from 'react-router-dom'
 
 class SingleProduct extends React.Component {
   constructor(props) {
@@ -91,14 +92,16 @@ class SingleProduct extends React.Component {
           >
             ADD TO CART
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              this.props.postOrder()
-            }}
-          >
-            COMPLETE ORDER
-          </button>
+          <Link to="/cart">
+            <button
+              type="button"
+              // onClick={() => {
+              //   this.props.postOrder()
+              // }}
+            >
+              CHECKOUT
+            </button>
+          </Link>
         </div>
       </div>
     )

@@ -46,6 +46,7 @@ export class Cart extends Component {
   }
 
   render() {
+    console.log('i am in cart')
     if (!localStorage.getItem('cart')) {
       return (
         <div>
