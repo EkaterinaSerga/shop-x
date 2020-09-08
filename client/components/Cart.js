@@ -19,9 +19,11 @@ export class Cart extends Component {
   componentDidMount() {
     const getCartItems = JSON.parse(localStorage.getItem('cart'))
     let sum = 0
-
-    for (let i = 0; i < getCartItems.length; i++) {
-      sum += getCartItems[i].price * getCartItems[i].quantity
+    if (!getCartItems) return
+    else {
+      for (let i = 0; i < getCartItems.length; i++) {
+        sum += getCartItems[i].price * getCartItems[i].quantity
+      }
     }
 
     this.setState({products: getCartItems, cartTotal: sum})
@@ -56,10 +58,20 @@ export class Cart extends Component {
     }
     return (
       <div className="cart">
-        <div className="cartAll">
+        <div
+          className="cartAll"
+          style={{
+            width: '75%'
+          }}
+        >
           {this.state.products.map((exp, index) => {
             return (
-              <div key={exp.id}>
+              <div
+                key={exp.id}
+                // style={{
+                //   margin: '20px'
+                // }}
+              >
                 <CartItem
                   product={exp}
                   key={index}
@@ -68,25 +80,39 @@ export class Cart extends Component {
               </div>
             )
           })}
+        </div>
+
+        <div className="cartTotal addCheckout">
+          <h2>Your Cart Total: ${this.state.cartTotal}</h2>
+          <div className="checkout-btn">
+            <Link to="/cart/checkout">
+              <button
+                className="checkout"
+                type="button"
+                style={{
+                  padding: '10px',
+                  width: '75%',
+                  margin: '10px'
+                }}
+              >
+                CHECKOUT -->
+              </button>
+            </Link>
+          </div>
           <div className="empty-cart">
             <button
               className="empty-btn"
               type="button"
               onClick={this.emptyCart}
+              style={{
+                padding: '10px',
+                width: '75%',
+                margin: '10px',
+                backgroundColor: 'red'
+              }}
             >
-              Empty Cart
+              EMPTY CART
             </button>
-          </div>
-        </div>
-
-        <div className="cartTotal">
-          <h2>Your Cart Total: ${this.state.cartTotal}</h2>
-          <div className="checkout-btn">
-            <Link to="/cart/checkout">
-              <button className="checkout" type="button">
-                Checkout
-              </button>
-            </Link>
           </div>
         </div>
       </div>

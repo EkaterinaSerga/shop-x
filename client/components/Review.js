@@ -61,13 +61,18 @@ export default function Review() {
         {products.map(product => (
           <ListItem className={classes.listItem} key={product.name}>
             <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <Typography variant="body2">
+              ${product.price} X {product.quantity}
+            </Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            $
+            {products.reduce((acc, current) => {
+              return acc + current.price * current.quantity
+            }, 0)}
           </Typography>
         </ListItem>
       </List>
@@ -77,9 +82,7 @@ export default function Review() {
             Shipping
           </Typography>
           <Typography gutterBottom>
-            {addresses.firstName
-              ? `{$addresses.firstName} {$addresses.lastName}`
-              : 'Unknown user'}
+            {addresses.firstName ? addresses.firstName : 'Unknown user'}
           </Typography>
           <Typography gutterBottom>
             {Object.values(addresses).join(', ')}

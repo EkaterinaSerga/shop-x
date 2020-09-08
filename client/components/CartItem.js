@@ -28,18 +28,36 @@ export class CartItem extends Component {
             <h1>{this.props.product.name}</h1>
           </div>
           <div>
-            <h2>Price:{this.props.product.price}</h2>
-            <h2>Quantity:</h2>
-            <input
-              type="number"
-              defaultValue={this.props.product.quantity}
-              min="1"
-              max="20"
-              onChange={this.handleChange}
-            />
-            <button type="button" onClick={this.props.remove}>
-              remove
-            </button>
+            <h2>Price per item: ${this.props.product.price}</h2>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'left',
+                alignItems: 'center'
+              }}
+              className="addCheckout"
+            >
+              <h2>Quantity:</h2>
+              <input
+                type="number"
+                defaultValue={this.props.product.quantity}
+                min="1"
+                max="20"
+                onChange={this.handleChange}
+              />
+
+              <button
+                type="button"
+                onClick={this.props.remove}
+                style={{
+                  backgroundColor: 'black',
+                  color: 'white'
+                }}
+              >
+                REMOVE
+              </button>
+            </div>
           </div>
         </div>
       </div>
