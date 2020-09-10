@@ -131,16 +131,6 @@ const SignIn = props => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="remember"
-                  color="primary"
-                  className={classes.checkBox}
-                />
-              }
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="companyName">
@@ -13,7 +14,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+          {/* <Link to="/account">
+            <AccountCircleIcon />
+          </Link> */}
           <Link to="/products">Shop</Link>
           <Link to="/cart">Cart</Link>
           <a href="#" onClick={handleClick}>

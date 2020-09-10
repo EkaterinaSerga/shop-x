@@ -91,9 +91,9 @@ class SingleProduct extends React.Component {
             <input
               type="number"
               defaultValue="1"
-              onChange={this.handleChange}
               min="1"
               max="20"
+              onChange={this.handleChange}
             />
             <button
               type="button"

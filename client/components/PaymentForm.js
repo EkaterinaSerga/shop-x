@@ -53,6 +53,7 @@ export default function PaymentForm() {
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
+            style={{color: 'black'}}
           />
         </Grid>
       </Grid>

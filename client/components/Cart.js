@@ -52,7 +52,15 @@ export class Cart extends Component {
     if (!localStorage.getItem('cart')) {
       return (
         <div>
-          <h1>There are no items in cart</h1>
+          <h1
+            style={{
+              textAlign: 'center',
+              fontFamily: ['Helvetica Neue', 'sans-serif'],
+              fontWeight: 'lighter'
+            }}
+          >
+            There are no items in cart
+          </h1>
         </div>
       )
     }

@@ -27,19 +27,21 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    console.log({routesProps: this.props})
-    console.log('blah')
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={SignInSide} />
         <Route path="/signup" component={SignUp} />
-        <Route exact path="/" component={SignInSide} />
-        <Route exact path="/home2" component={Home} />
+        <Route
+          exact
+          path="/"
+          component={isLoggedIn ? AllProducts : SignInSide}
+        />
+        {/* <Route exact path="/home2" component={Home} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route exact path="/home" component={UserHome} />
+            {/* <Route exact path="/account" component={UserHome} /> */}
             <Route exact path="/allUsers" component={AllUsers} />
             <Route
               exact
@@ -49,6 +51,7 @@ class Routes extends Component {
             <Route exact path="/products" component={AllProducts} />
             <Route exact path="/cart/checkout" component={Checkout} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/" component={AllProducts} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

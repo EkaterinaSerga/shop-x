@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 export class CartItem extends Component {
   constructor(props) {
@@ -20,9 +21,11 @@ export class CartItem extends Component {
   render() {
     return (
       <div className="cartItem">
-        <div className="cartImage">
-          <img src={this.props.product.imageUrl} />
-        </div>
+        <Link to={`/products/${this.props.product.id}`}>
+          <div className="cartImage">
+            <img src={this.props.product.imageUrl} />
+          </div>
+        </Link>
         <div className="cartDetails">
           <div className="cartDetailsBlock">
             <h1>{this.props.product.name}</h1>

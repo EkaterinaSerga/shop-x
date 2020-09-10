@@ -9,14 +9,22 @@ body {
   width: 100%;
   font-family: 'Helvetica Neue', sans-serif;
   color: white;
+  background-image: url('https://wallpaper.wiki/wp-content/uploads/2019/02/1msflight_rv6_kahoolawe.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 0px;
+  width: 100%;
+  /* margin-top: 30px; */
 }
 
 body {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: lighter;
-  background-image: url('https://wallpaper.wiki/wp-content/uploads/2019/02/1msflight_rv6_kahoolawe.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 a {
@@ -172,7 +180,7 @@ nav.navigation {
 
 div .list-ctn h1 {
   color: white;
-  height: 65px;
+  height: 80px;
   text-align: center;
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: lighter;

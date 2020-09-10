@@ -118,18 +118,6 @@ const SignUp = props => {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    value="allowExtraEmails"
-                    color="primary"
-                    className={classes.checkBox}
-                  />
-                }
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"

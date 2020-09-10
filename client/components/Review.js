@@ -6,13 +6,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Grid from '@material-ui/core/Grid'
 
-// const products = [
-//   {name: 'Product 1', desc: 'A nice thing', price: '$9.99'},
-//   {name: 'Product 2', desc: 'Another thing', price: '$3.45'},
-//   {name: 'Product 3', desc: 'Something else', price: '$6.51'},
-//   {name: 'Product 4', desc: 'Best thing of all', price: '$14.11'},
-//   {name: 'Shipping', desc: '', price: 'Free'}
-// ]
 const products = JSON.parse(localStorage.getItem('cart')) || [
   {name: 'Product 1', desc: 'A nice thing', price: '$9.99'},
   {name: 'Product 2', desc: 'Another thing', price: '$3.45'},
@@ -21,14 +14,7 @@ const products = JSON.parse(localStorage.getItem('cart')) || [
   {name: 'Shipping', desc: '', price: 'Free'}
 ]
 
-// const addresses = [
-//   '1 Material-UI Drive',
-//   'Reactville',
-//   'Anytown',
-//   '99999',
-//   'USA'
-// ]
-const addresses = JSON.parse(localStorage.getItem('address'))
+const address = JSON.parse(localStorage.getItem('address'))
 
 const payments = [
   {name: 'Card type', detail: 'Visa'},
@@ -82,10 +68,10 @@ export default function Review() {
             Shipping
           </Typography>
           <Typography gutterBottom>
-            {addresses.firstName ? addresses.firstName : 'Unknown user'}
+            {address.firstName ? address.firstName : 'Unknown user'}
           </Typography>
           <Typography gutterBottom>
-            {Object.values(addresses).join(', ')}
+            {Object.values(address).join(', ')}
           </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>

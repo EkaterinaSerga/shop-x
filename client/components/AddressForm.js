@@ -258,6 +258,7 @@ class AddressForm extends React.Component {
                 <Checkbox color="secondary" name="saveAddress" value="yes" />
               }
               label="Use this address for payment details"
+              style={{color: 'black'}}
             />
           </Grid>
         </Grid>
