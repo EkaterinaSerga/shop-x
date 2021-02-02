@@ -87,10 +87,6 @@ class Checkout extends React.Component {
     this.getStepContent = this.getStepContent.bind(this)
   }
 
-  // setActiveStep() {
-  //   this.setState({activeStep: activeStep + 1})
-  // }
-
   handleNext() {
     // console.log('active step you all-->', this.state.activeStep)
     if (this.state.activeStep === 0) {
@@ -107,6 +103,7 @@ class Checkout extends React.Component {
         })
       )
     }
+
     this.setState({activeStep: this.state.activeStep + 1})
   }
 
@@ -128,7 +125,7 @@ class Checkout extends React.Component {
       case 1:
         return <PaymentForm handleChange={this.handleChange} />
       case 2:
-        return <Review />
+        return <Review state={this.state} />
       default:
         throw new Error('Unknown step')
     }
@@ -165,9 +162,8 @@ class Checkout extends React.Component {
                     Thank you for your order.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your order number is 12345. We have emailed your order
-                    confirmation, and will send you an update when your order
-                    has shipped.
+                    Your order number is 12345. We will send you an update when
+                    your order has shipped.
                   </Typography>
                 </React.Fragment>
               ) : (

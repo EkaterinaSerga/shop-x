@@ -2,12 +2,76 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+import NativeSelect from '@material-ui/core/NativeSelect'
+import InputLabel from '@material-ui/core/InputLabel'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import {connect} from 'react-redux'
 // import CheckoutConfirmation from './checkout_confirmation'
 import {me} from '../store/user'
 import {postSingleOrderThunk} from '../store/order'
+
+const states = [
+  'Alabama',
+  'Alaska',
+  'American Samoa',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'District of Columbia',
+  'Federated States of Micronesia',
+  'Florida',
+  'Georgia',
+  'Guam',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Marshall Islands',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Northern Mariana Islands',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Palau',
+  'Pennsylvania',
+  'Puerto Rico',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virgin Island',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming'
+]
 
 class AddressForm extends React.Component {
   constructor(props) {
@@ -31,68 +95,6 @@ class AddressForm extends React.Component {
     //   this.handleSelectionChange = this.handleSelectionChange.bind(this)
     this.setUser = this.setUser.bind(this)
   }
-
-  // states = [
-  //   'Alabama',
-  //   'Alaska',
-  //   'American Samoa',
-  //   'Arizona',
-  //   'Arkansas',
-  //   'California',
-  //   'Colorado',
-  //   'Connecticut',
-  //   'Delaware',
-  //   'District of Columbia',
-  //   'Federated States of Micronesia',
-  //   'Florida',
-  //   'Georgia',
-  //   'Guam',
-  //   'Hawaii',
-  //   'Idaho',
-  //   'Illinois',
-  //   'Indiana',
-  //   'Iowa',
-  //   'Kansas',
-  //   'Kentucky',
-  //   'Louisiana',
-  //   'Maine',
-  //   'Marshall Islands',
-  //   'Maryland',
-  //   'Massachusetts',
-  //   'Michigan',
-  //   'Minnesota',
-  //   'Mississippi',
-  //   'Missouri',
-  //   'Montana',
-  //   'Nebraska',
-  //   'Nevada',
-  //   'New Hampshire',
-  //   'New Jersey',
-  //   'New Mexico',
-  //   'New York',
-  //   'North Carolina',
-  //   'North Dakota',
-  //   'Northern Mariana Islands',
-  //   'Ohio',
-  //   'Oklahoma',
-  //   'Oregon',
-  //   'Palau',
-  //   'Pennsylvania',
-  //   'Puerto Rico',
-  //   'Rhode Island',
-  //   'South Carolina',
-  //   'South Dakota',
-  //   'Tennessee',
-  //   'Texas',
-  //   'Utah',
-  //   'Vermont',
-  //   'Virgin Island',
-  //   'Virginia',
-  //   'Washington',
-  //   'West Virginia',
-  //   'Wisconsin',
-  //   'Wyoming'
-  // ]
 
   componentDidMount() {
     this.props.getUser().then(this.setUser())
@@ -136,25 +138,6 @@ class AddressForm extends React.Component {
     })
     this.props.handleChange(event)
   }
-
-  // handleSelectionChange(event) {
-  //   this.setState({
-  //     state: event.target.value
-  //   })
-  // }
-
-  // handlePreview() {
-  //   this.setState({
-  //     step: 2
-  //   })
-  // }
-
-  // handleConfirm() {
-  //   this.setState({
-  //     step: 3
-  //   })
-  //   window.localStorage.clear()
-  // }
 
   async setUser() {
     await this.setState({
@@ -219,14 +202,22 @@ class AddressForm extends React.Component {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
+            <InputLabel id="demo-simple-select-label">
+              State/Province/Region
+            </InputLabel>
+            <NativeSelect
+              required
               id="state"
               name="state"
               label="State/Province/Region"
               fullWidth
               value={this.state.state}
               onChange={this.handleChange}
-            />
+            >
+              {states.map(state => (
+                <option>{state}</option>
+              ))}
+            </NativeSelect>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField

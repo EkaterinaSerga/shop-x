@@ -16,13 +16,6 @@ const products = JSON.parse(localStorage.getItem('cart')) || [
 
 const address = JSON.parse(localStorage.getItem('address'))
 
-const payments = [
-  {name: 'Card type', detail: 'Visa'},
-  {name: 'Card holder', detail: 'Mr John Smith'},
-  {name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234'},
-  {name: 'Expiry date', detail: '04/2024'}
-]
-
 const useStyles = makeStyles(theme => ({
   listItem: {
     padding: theme.spacing(1, 0)
@@ -35,9 +28,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Review() {
+export default function Review(props) {
   const classes = useStyles()
+  const {state} = props
 
+  const payments = [
+    {name: 'Card type', detail: 'Visa'},
+    {name: 'Card holder', detail: state.cardName},
+    {name: 'Card number', detail: state.cardNumber},
+    {name: 'Expiry date', detail: state.expDate}
+  ]
+  console.log('payments--->', payments)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -68,10 +69,12 @@ export default function Review() {
             Shipping
           </Typography>
           <Typography gutterBottom>
-            {address.firstName ? address.firstName : 'Unknown user'}
+            {`${address.firstName ? address.firstName : 'Unknown user'} ${
+              address.lastName ? address.lastName : ''
+            }`}
           </Typography>
           <Typography gutterBottom>
-            {Object.values(address).join(', ')}
+            {`${address.address}, ${address.city}, ${address.state}, ${address.zipCode}`}
           </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
