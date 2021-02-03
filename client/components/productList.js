@@ -1,8 +1,11 @@
 import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {fetchOrderThunk, postSingleOrderThunk} from '../store/order'
+import axios from 'axios'
 
-class ProductList extends React.Component {
+export default class ProductList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,28 +18,43 @@ class ProductList extends React.Component {
     this.valueCheck = this.valueCheck.bind(this)
   }
 
-  addToCart(event) {
+  async addToCart(event) {
+    const {user} = this.props
+    const {id, name, price, imageUrl} = this.props.product
     const productToAdd = {
-      id: this.props.product.id,
-      name: this.props.product.name,
-      price: this.props.product.price,
-      quantity: Number(this.state.qty),
-      imageUrl: this.props.product.imageUrl
+      id,
+      name,
+      price,
+      qty: this.state.qty,
+      imageUrl,
+      userId: user.id
     }
 
-    if (!localStorage.getItem('cart')) {
-      localStorage.setItem('cart', JSON.stringify([productToAdd]))
+    if (user.id) {
+      //if user is logged in update existing order or create one
+      await axios.post('/api/cart', productToAdd)
     } else {
-      const newCart = JSON.parse(localStorage.getItem('cart'))
-      const product = newCart.find(item => item.id === Number(event.target.id))
-      if (product) {
-        product.quantity = Number(product.quantity) + Number(this.state.qty)
+      //if not, store information with local storage
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify([productToAdd]))
       } else {
-        newCart.push(productToAdd)
+        const newCart = JSON.parse(localStorage.getItem('cart'))
+        const product = newCart.find(
+          item => item.id === Number(event.target.id)
+        )
+        if (product) {
+          product.qty = Number(product.qty) + Number(this.state.qty)
+        } else {
+          newCart.push(productToAdd)
+        }
+        localStorage.setItem('cart', JSON.stringify(newCart))
       }
-      localStorage.setItem('cart', JSON.stringify(newCart))
     }
+
+    //alert that the product was added to cart
     alert('Added to cart!')
+
+    //reset product quantity
     this.setState({
       qty: 1
     })
@@ -102,7 +120,6 @@ class ProductList extends React.Component {
             <input
               type="number"
               className="quantity-input"
-              defaultValue="1"
               onChange={this.handleChange}
               min="1"
               max="20"
@@ -128,5 +145,3 @@ class ProductList extends React.Component {
     )
   }
 }
-
-export default ProductList

@@ -49,7 +49,7 @@ export default function Review(props) {
           <ListItem className={classes.listItem} key={product.name}>
             <ListItemText primary={product.name} secondary={product.desc} />
             <Typography variant="body2">
-              ${product.price} X {product.quantity}
+              ${product.price} X {product.qty}
             </Typography>
           </ListItem>
         ))}
@@ -58,7 +58,7 @@ export default function Review(props) {
           <Typography variant="subtitle1" className={classes.total}>
             $
             {products.reduce((acc, current) => {
-              return acc + current.price * current.quantity
+              return acc + current.price * current.qty
             }, 0)}
           </Typography>
         </ListItem>

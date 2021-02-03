@@ -8,7 +8,7 @@ class SingleProduct extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: 1,
+      qty: 1,
       buttonClass: 'checkOut'
     }
     this.addToCart = this.addToCart.bind(this)
@@ -22,7 +22,7 @@ class SingleProduct extends React.Component {
 
   handleChange(event) {
     this.setState({
-      quantity: event.target.value
+      qty: event.target.value
     })
   }
 
@@ -40,7 +40,7 @@ class SingleProduct extends React.Component {
       name: this.props.singleProduct.name,
       price: this.props.singleProduct.price,
       imageUrl: this.props.singleProduct.imageUrl,
-      quantity: this.state.quantity
+      qty: this.state.qty
     }
 
     if (!localStorage.getItem('cart')) {
@@ -49,8 +49,7 @@ class SingleProduct extends React.Component {
       const newCart = JSON.parse(localStorage.getItem('cart'))
       const product = newCart.find(item => item.id === Number(this.props.id))
       if (product) {
-        product.quantity =
-          Number(product.quantity) + Number(this.state.quantity)
+        product.qty = Number(product.qty) + Number(this.state.qty)
       } else {
         newCart.push(productToAdd)
       }
@@ -58,7 +57,7 @@ class SingleProduct extends React.Component {
     }
     alert('Added to cart!')
     this.setState({
-      quantity: 1
+      qty: 1
     })
   }
 

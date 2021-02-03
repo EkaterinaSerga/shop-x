@@ -123,7 +123,7 @@ class AddressForm extends React.Component {
       return cart.map(item => {
         return (
           <p key={item.name}>
-            {item.name} : {item.quantity}
+            {item.name} : {item.qty}
           </p>
         )
       })

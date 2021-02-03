@@ -5,18 +5,18 @@ const POST_ORDER = 'POST_ORDER'
 const GET_ORDER = 'GET_ORDER'
 
 //action creators
-export const postSingleOrder = products => ({
+export const postSingleOrder = order => ({
   type: POST_ORDER,
-  products
+  order
 })
 
 export const getOrder = order => ({
   type: GET_ORDER,
-  order
+  order: order
 })
 
 //state
-const initialState = []
+const initialState = {}
 
 //thunk
 export function postSingleOrderThunk() {
@@ -35,6 +35,7 @@ export function fetchOrderThunk(id) {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/cart/${id}`)
+      console.log('I was in fetshorderthunk', data)
       dispatch(getOrder(data))
     } catch (error) {
       console.log(error)
@@ -46,9 +47,9 @@ export function fetchOrderThunk(id) {
 export default (state = initialState, action) => {
   switch (action.type) {
     case POST_ORDER:
-      return action.products
-    // case GET_ORDER:
-    //   return action.order
+      return action.order
+    case GET_ORDER:
+      return action.order
     default:
       return state
   }

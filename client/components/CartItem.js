@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 export class CartItem extends Component {
   constructor(props) {
@@ -8,14 +9,28 @@ export class CartItem extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(event) {
-    console.log('I got into handle change')
-    const newCart = JSON.parse(localStorage.getItem('cart'))
-    const selectedItem = newCart.find(
-      product => product.id === this.props.product.id
+  async handleChange(event) {
+    console.log(
+      'things in handleChnade',
+      event.target.value,
+      this.props.orderId,
+      this.props.product.id
     )
-    selectedItem.quantity = event.target.value
-    localStorage.setItem('cart', JSON.stringify(newCart))
+    if (this.props.userId) {
+      await axios.put('/api/cart/', {
+        qty: Number(event.target.value),
+        orderId: this.props.orderId,
+        productId: this.props.product.id
+      })
+      //update order details
+    } else {
+      const newCart = JSON.parse(localStorage.getItem('cart'))
+      const selectedItem = newCart.find(
+        product => product.id === this.props.product.id
+      )
+      selectedItem.qty = event.target.value
+      localStorage.setItem('cart', JSON.stringify(newCart))
+    }
   }
 
   render() {
@@ -44,7 +59,7 @@ export class CartItem extends Component {
               <h2>Quantity:</h2>
               <input
                 type="number"
-                defaultValue={this.props.product.quantity}
+                defaultValue={this.props.product.qty}
                 min="1"
                 max="20"
                 onChange={this.handleChange}
