@@ -35,7 +35,6 @@ export function fetchOrderThunk(id) {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/cart/${id}`)
-      console.log('I was in fetshorderthunk', data)
       dispatch(getOrder(data))
     } catch (error) {
       console.log(error)

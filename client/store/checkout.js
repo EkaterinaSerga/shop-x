@@ -17,7 +17,6 @@ const initialState = {}
 export const completeOrder = event => {
   return async dispatch => {
     try {
-      console.log('in thunk')
       event.preventDefault()
       const orderId = event.target.id
 

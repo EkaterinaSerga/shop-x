@@ -100,9 +100,7 @@ class AddressForm extends React.Component {
     this.props.getUser().then(this.setUser())
     this.getItemsFromCart()
     const cart = JSON.parse(localStorage.getItem('address'))
-    console.log('address 1 -->', cart)
     if (!cart) {
-      console.log('nothing in the cart')
       localStorage.setItem('address', JSON.stringify([this.state]))
     } else {
       this.setState({
@@ -132,7 +130,6 @@ class AddressForm extends React.Component {
 
   handleChange(event) {
     event.preventDefault()
-    console.log({addressEvent: event.target})
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -146,7 +143,6 @@ class AddressForm extends React.Component {
   }
 
   render() {
-    console.log('state from address form', this.state)
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom>

@@ -62,8 +62,6 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    console.log(this.props.singleProduct)
-
     if (!this.props.singleProduct) {
       return null
     }

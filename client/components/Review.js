@@ -38,7 +38,6 @@ export default function Review(props) {
     {name: 'Card number', detail: state.cardNumber},
     {name: 'Expiry date', detail: state.expDate}
   ]
-  console.log('payments--->', payments)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

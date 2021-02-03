@@ -88,7 +88,6 @@ class Checkout extends React.Component {
   }
 
   handleNext() {
-    // console.log('active step you all-->', this.state.activeStep)
     if (this.state.activeStep === 0) {
       localStorage.setItem(
         'address',
@@ -112,7 +111,6 @@ class Checkout extends React.Component {
   }
 
   handleChange(event) {
-    console.log({event: event.target.name})
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -132,12 +130,6 @@ class Checkout extends React.Component {
   }
 
   render() {
-    console.log(
-      'checkout state-->',
-      this.state,
-      'active step',
-      this.state.activeStep
-    )
     const {classes} = this.props
     let activeStep = this.state.activeStep
     return (

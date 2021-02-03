@@ -10,12 +10,6 @@ export class CartItem extends Component {
   }
 
   async handleChange(event) {
-    console.log(
-      'things in handleChnade',
-      event.target.value,
-      this.props.orderId,
-      this.props.product.id
-    )
     if (this.props.userId) {
       await axios.put('/api/cart/', {
         qty: Number(event.target.value),

@@ -19,7 +19,6 @@ class Cart extends Component {
 
     //fetch existing incomplete order for the user, only if there is a loggedin user
     await this.props.getOrder(this.props.id)
-    console.log('ORDER IN CART', this.props.order)
     let sum = 0
     let getCartItems = []
     //if there is an existing order, assign it's content to getCartItems

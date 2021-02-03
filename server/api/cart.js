@@ -92,7 +92,6 @@ router.get('/:userId/', async (req, res, next) => {
         include: [Product]
       })
       const data = await order.getProducts()
-      console.log('my current order', data)
       res.json({data, id: order.id})
     } else {
       res.status(401).json('User does not have get orderDetails access.')
@@ -111,7 +110,6 @@ router.put('/', async (req, res, next) => {
           productId: req.body.productId
         }
       })
-      console.log('here is my order to MODIFY', req.body)
       modifyOrder.productQty = Number(req.body.qty)
       modifyOrder.save()
       res.send(modifyOrder)
