@@ -143,9 +143,9 @@ const SignIn = props => {
             {error && error.response && (
               <div style={{color: 'red'}}> {error.response.data} </div>
             )}
-            <a className={classes.googleLogin} href="/auth/google">
+            {/* <a className={classes.googleLogin} href="/auth/google">
               {displayName} with Google
-            </a>
+            </a> */}
             <Grid container>
               <Grid item xs>
                 <Link to="/">Forgot password?</Link>
